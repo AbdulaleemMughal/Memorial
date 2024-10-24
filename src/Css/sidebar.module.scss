@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+
+.container {
+  height: 100%;
+}
+.drawer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  &-title {
+    h2 {
+      font-size: 24px;
+      font-family: Spectral, serif;
+      font-weight: 300;
+      letter-spacing: -1px;
+      margin: 0px 0px 9px 0px;
+    }
+
+    &-line {
+      height: 2px;
+      width: 60px;
+    }
+  }
+}
+
+.drawer-content {
+  padding: 15px 0px 11px 0px;
+  border-bottom: 1px solid black;
+
+  &-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    button {
+      background-color: white;
+      border: none;
+      font-size: 16px;
+      font-family: Poppins;
+      cursor: pointer;
+      padding: 0px;
+    }
+  }
+  &-list {
+    display: inline-block;
+    width: 331px;
+
+    &-button {
+      display: flex;
+
+      button {
+        padding: 5px 20px;
+        border: none;
+        font-size: 16px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        letter-spacing: -1px;
+        color: #ffffff;
+
+        &:nth-child(2) {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    &-color {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &-lists {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        margin: 0px 5px;
+
+        &-palette {
+          height: 30px;
+          width: 30px;
+          background-color: rgb(56, 186, 229);
+          border-radius: 50%;
+          color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    p {
+      margin: 20px 0px 10px 0px;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    &-items {
+      display: flex;
+      align-items: center;
+      background-color: rgb(248, 249, 250);
+      padding: 5px 10px;
+      transition: 0.5s all ease-in-out;
+
+      p {
+        margin: 0px 0px 0px 12px;
+        font-size: 16px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 500;
+      }
+    }
+  }
+}
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 220px;
+
+  button {
+    font-size: 16px;
+    font-family: Poppins;
+    padding: 10px 24px;
+    border: none;
+
+
+    &:nth-child(1) {
+      margin-bottom: 12px;
+    }
+  }
+}
