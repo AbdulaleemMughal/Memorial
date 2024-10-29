@@ -10,8 +10,8 @@ const backgroundSlice = createSlice({
   reducers: {
     addBackground: (state, action) => {
       state.isBackground = action.payload;
-      const newFont = JSON.stringify(state.isBackground);
-      localStorage.setItem("background", newFont);
+      const newBackground = JSON.stringify(state.isBackground);
+      localStorage.setItem("background", newBackground);
     },
   },
 });

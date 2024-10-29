@@ -4,6 +4,8 @@
 
 .container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .drawer {
   display: flex;
@@ -12,6 +14,10 @@
   margin-bottom: 25px;
 
   &-title {
+    position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
     h2 {
       font-size: 24px;
       font-family: Spectral, serif;
@@ -30,6 +36,20 @@
 .drawer-content {
   padding: 15px 0px 11px 0px;
   border-bottom: 1px solid black;
+  flex-grow: 1;
+
+  &::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Hover color */
+  }
 
   &-dropdown {
     display: flex;
@@ -118,6 +138,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 220px;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  z-index: 1;
 
   button {
     font-size: 16px;

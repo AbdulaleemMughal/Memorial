@@ -1,4 +1,5 @@
 export interface SidebarInterface {
     id: number;
-    color: string;
+    color?: string;
+    title?: string;
 }
