@@ -3,6 +3,7 @@ import colorReducer from "./ColorSlice";
 import fontReducer from './FontSlice';
 import backgroundReducer from './BackgroundSlice';
 import textReducer from './TextSlice';
+import timelineReducer from './TimelineSlice';
 
 export const appStore = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const appStore = configureStore({
         font: fontReducer,
         background: backgroundReducer,
         text: textReducer,
+        timeline: timelineReducer,
     }
 });
 

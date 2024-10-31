@@ -1,0 +1,31 @@
+.tab-header {
+  background-color: rgba(255, 255, 255, 0.26);
+  margin: 115px 0px 0px 0px;
+
+  &-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 5px 15px;
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 400;
+      gap: 5px;
+      cursor: pointer;
+      padding: 13px 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+    .tab-header {
+        margin-top: 350px;
+        &-nav {
+            width: 100%
+        }
+    }
+}

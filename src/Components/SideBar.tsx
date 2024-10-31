@@ -63,6 +63,7 @@ export const SideBar = ({
 
   useEffect(() => {
     setOpenDrawer(true);
+    document.body.style.backgroundColor = backgroundColorSelect;
   }, []);
 
   //function

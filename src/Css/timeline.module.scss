@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+
+.timeline {
+  padding-top: 120px;
+  padding-bottom: 50px;
+
+  &-edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-input input {
+      font-size: 33px;
+      font-family: Spectral;
+      padding: 5px 10px;
+      width: 240px;
+      background-color: transparent;
+      border: 1px dashed rgba(166, 166, 166, 0.36);
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    &-input-line {
+      height: 3px;
+      width: 60px;
+    }
+  }
+
+  &-button {
+    margin-top: 50px;
+
+    button {
+      padding: 10px 24px;
+      font-family: Poppins;
+      align-items: center;
+      border: none;
+    }
+  }
+
+  &-content {
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+
+    &:hover {
+        cursor: move;
+    }
+
+    &-select select {
+        width: 95px;
+        padding: 6px 15px 6px 8px;
+    }
+
+    &-select-edit {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        select {
+            width: 95px;
+            padding: 6px 15px 6px 8px;
+        }
+    }
+
+    &-marker {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+
+    &-info h5 input {
+        padding: 5px 10px;
+        background-color: transparent;
+        border: 1px dashed rgba(166, 166, 166, 0.36);
+        font-family: Poppins;
+        font-size: 22px;
+        outline: none;
+    }
+
+    &-info p input {
+        padding: 5px 10px;
+        background-color: transparent;
+        border: 1px dashed rgba(166, 166, 166, 0.36);
+        font-family: Poppins;
+        font-size: 16px;
+        outline: none;
+    }
+
+    &-info button {
+        padding: 10px 13px;
+        border: none;
+        border-radius: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .timeline {
+        width: 100%;
+    }
+}
