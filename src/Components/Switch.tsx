@@ -1,5 +1,5 @@
 import { Switch, SwitchProps } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../Css/switch.module.scss";
 import { addTimelineSwitch } from "../Store/TimelineSlice";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,10 @@ export const SwitchButton = ({ color }: SwitchProp) => {
     //-----------hooks---------------
   const [isSwitchOn, setIsSwitchOn] = useState<boolean>(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setIsSwitchOn(localStorage.getItem('timeline-switch') || false);
+  }, [])
 
   const handleSwitchChange: SwitchProps["onChange"] = (event) => {
     setIsSwitchOn(event.target.checked);
