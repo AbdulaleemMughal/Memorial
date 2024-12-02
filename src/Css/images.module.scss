@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+
+.images {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 270px;
+    position: relative;
+
+    &-container {
+        position: relative;
+
+        img {
+            height: 180px;
+            width: 267px;
+        }
+    }
+
+    &-dropdown {
+        position: relative;
+        background-color: #fff;
+        width: 100px;
+        border-radius: 10px;
+        right: 120px;
+        bottom: 36px;
+
+        ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            margin: 0px;
+            padding: 0px;
+
+            li {
+            padding: 0px 10px 5px 10px;
+            }
+        }
+    }
+}
+
+.folder-dropdown {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+    overflow-y: auto;
+    position: absolute;
+    right: 11px;
+    top: 72px;
+    padding: 5px 0px;
+
+    &-items {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px;
+
+        label {
+            font-size: 10px;
+            font-family: Poppins;
+        }
+    }
+}

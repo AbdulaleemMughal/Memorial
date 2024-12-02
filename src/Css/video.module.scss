@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+
+.video {
+  padding-top: 120px;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+
+    &-input {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        font-size: 33px;
+        font-family: Spectral;
+        padding: 5px 10px;
+        width: 240px;
+        background-color: transparent;
+        border: 1px dashed rgba(166, 166, 166, 0.36);
+        outline: none;
+        margin-bottom: 10px;
+      }
+
+      &-line {
+        width: 60px;
+        height: 3px;
+      }
+    }
+
+    &-switch {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0px;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  &-button {
+    margin-top: 50px;
+
+    button {
+      font-family: Poppins;
+      padding: 10px 24px;
+      border: none;
+    }
+  }
+
+  &-modal {
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid rgb(222, 226, 230);
+
+      h4 {
+        font-family: Spectral;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0px;
+      }
+    }
+
+    &-body {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 25px;
+      gap: 20px;
+      border-bottom: 1px solid rgb(222, 226, 230);
+
+      &-input {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            font-size: 16px;
+            font-family: Poppins;
+        }
+
+        input {
+            padding: 12px 20px;
+            background-color: rgb(247, 245, 246);
+            border: none;
+            outline: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+      }
+
+      &-link p {
+        font-family: Poppins;
+      }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: flex-end;
+
+        &-button {
+            padding: 12px 25px;
+        }
+    }
+  }
+}

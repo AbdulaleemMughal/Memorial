@@ -34,7 +34,7 @@
         &-button2 {
             position: absolute;
             top: 363px;
-            right: 11px;
+            right: 17px;
 
             &-button {
                 font-family: Poppins;
@@ -47,10 +47,11 @@
             }
 
             &-input {
-                position: relative;
-                right: 130px;
-                opacity: 0;
-                cursor: pointer;
+                // position: relative;
+                // right: 130px;
+                // opacity: 0;
+                // cursor: pointer;
+                display: none;
             }
         }
     }

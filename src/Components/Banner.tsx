@@ -1,5 +1,5 @@
 import styles from "../Css/banner.module.scss";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SideBar } from "./SideBar";
 import { useSelector } from "react-redux";
 import { RootState } from "../Store/appstore";
@@ -9,9 +9,9 @@ import { Profile } from "./Profile";
 
 export const Banner = () => {
   // -------Hooks --------------
+  const imageRef = useRef<HTMLInputElement | null>(null);
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
-  const [image, setImage] = useState<File | null>(null);
-  const [livePreveiw, setLivePreveiw] = useState<string>("");
+  const [image, setImage] = useState<string | null>(null);
 
   const pageColorSelect = useSelector(
     (store: RootState) => store.color.isColor
@@ -21,17 +21,26 @@ export const Banner = () => {
   useEffect(() => {
     const storedImage = localStorage.getItem("banner-image");
     if (storedImage) {
-      setLivePreveiw(storedImage);
+      setImage(storedImage);
     }
   }, []);
 
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(file);
-      const previewURL = URL.createObjectURL(file);
-      setLivePreveiw(previewURL);
-      localStorage.setItem("banner-image", previewURL);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setImage(base64String);
+        localStorage.setItem("banner-image", base64String);
+      };
+      reader.readAsDataURL(file); 
+    }
+  };
+
+  const changeImage = () => {
+    if (imageRef.current) {
+      imageRef.current.click();
     }
   };
 
@@ -49,7 +58,7 @@ export const Banner = () => {
       <div
         className={styles["banner"]}
         style={{
-          backgroundImage: livePreveiw ? `url(${livePreveiw})` : "none",}}
+          backgroundImage: image ? `url(${image})` : "none",}}
       >
         <div className={styles["banner-container"]}>
           <div className={styles["banner-container-button1"]}>
@@ -72,11 +81,13 @@ export const Banner = () => {
                 color: textColorSelect,
               }}
               className={styles["banner-container-button2-button"]}
+              onClick={changeImage}
             >
               <IoImageOutline />
               Change Image
             </button>
             <input
+              ref={imageRef}
               type="file"
               accept="image/*"
               onChange={handleImage}

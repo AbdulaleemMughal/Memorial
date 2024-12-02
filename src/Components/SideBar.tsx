@@ -1,5 +1,5 @@
 import { Drawer } from "antd";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "../Css/sidebar.module.scss";
 import { RxCross2 } from "react-icons/rx";
 import { RiArrowDownSLine } from "react-icons/ri";
@@ -7,6 +7,7 @@ import { RxDragHandleDots2 } from "react-icons/rx";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 import { BsArrowRight } from "react-icons/bs";
 import { SidebarInterface } from "../Typescript/sidebar.interface";
+import { CgColorPicker } from "react-icons/cg";
 import {
   sidebarItems,
   pageColor,
@@ -20,6 +21,7 @@ import { addFont } from "../Store/FontSlice";
 import { RootState } from "../Store/appstore";
 import { addBackground } from "../Store/BackgroundSlice";
 import { addText } from "../Store/TextSlice";
+import { Link } from "react-router-dom";
 
 //Types
 type SideBarProps = {
@@ -39,6 +41,9 @@ export const SideBar = ({
   setOpenDrawer,
 }: SideBarProps) => {
   //hooks
+  const pageInputRef = useRef<HTMLInputElement | null>(null);
+  const backgroundRef = useRef<HTMLInputElement | null>(null);
+  const fontRef = useRef<HTMLInputElement | null>(null);
   const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
   const [isOpenPagePalette, setIsOpenPagePalette] = useState<boolean>(false);
   const [isOpenBackgroundPalette, setIsOpenBackgroundPalette] =
@@ -112,20 +117,6 @@ export const SideBar = ({
     setIsOpenDropdown(false);
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsPageColor(e.target.value);
-  };
-
-  const handleBackgroundChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsBackgroundColor(e.target.value);
-
-    document.body.style.backgroundColor = backgroundColorSelect;
-  };
-
-  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsTextColor(e.target.value);
-  };
-
   const handleDragStart = (index: number) => {
     setDraggingIndex(index);
   };
@@ -142,6 +133,40 @@ export const SideBar = ({
     setDraggingIndex(null);
     localStorage.setItem("reorderedItems", JSON.stringify(items));
   };
+
+  const handlePageColor = () => {
+    if (pageInputRef.current) {
+      pageInputRef.current.click();
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsPageColor(e.target.value);
+    dispatch(addColor(isPageColor))
+  };
+
+  const handleBackgroundColorChange = () => {
+    if (backgroundRef.current) {
+      backgroundRef.current.click();
+    }
+  };
+
+  const handleBackgroundPalette = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsBackgroundColor(e.target.value);
+    dispatch(addBackground(isBackgroundColor))
+  };
+
+  const handleFontPicker = () => {
+    if (fontRef.current) {
+      fontRef.current.click();
+    }
+  };
+
+  const handleFontChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsTextColor(e.target.value);
+    dispatch(addText(isTextColor));
+  };
+
 
   return (
     <>
@@ -205,14 +230,13 @@ export const SideBar = ({
 
           <div
             className={styles["drawer-content"]}
-            onClick={() => handlePage()}
           >
             <div className={styles["drawer-content-dropdown"]}>
               <button>Page color</button>
               {!isOpenPagePalette ? (
-                <RiArrowDownSLine style={iconProp} />
+                <RiArrowDownSLine style={iconProp} onClick={() => handlePage()} />
               ) : (
-                <RiArrowUpSLine style={iconProp} />
+                <RiArrowUpSLine style={iconProp} onClick={() => handlePage()} />
               )}
             </div>
             {isOpenPagePalette && (
@@ -239,12 +263,16 @@ export const SideBar = ({
                       <div
                         className={styles["color-picker-circle"]}
                         style={{ backgroundColor: isPageColor }}
+                        onClick={handlePageColor}
                       >
+                        <CgColorPicker />
                         <input
+                        ref={pageInputRef}
                           type="color"
                           value={isPageColor}
                           onChange={handleChange}
                           className={styles["color-picker-circle-input"]}
+                          style={{ display: "none" }}
                         />
                       </div>
                     </div>
@@ -258,14 +286,14 @@ export const SideBar = ({
 
           <div
             className={styles["drawer-content"]}
-            onClick={() => handleBackground()}
+            
           >
             <div className={styles["drawer-content-dropdown"]}>
               <button>Background color</button>
               {!isOpenBackgroundPalette ? (
-                <RiArrowDownSLine style={iconProp} />
+                <RiArrowDownSLine style={iconProp} onClick={() => handleBackground()} />
               ) : (
-                <RiArrowUpSLine style={iconProp} />
+                <RiArrowUpSLine style={iconProp} onClick={() => handleBackground()} />
               )}
             </div>
             {isOpenBackgroundPalette && (
@@ -295,12 +323,16 @@ export const SideBar = ({
                       <div
                         className={styles["color-picker-circle"]}
                         style={{ backgroundColor: backgroundColorSelect }}
+                        onClick={handleBackgroundColorChange}
                       >
+                        <CgColorPicker style={{backgroundColor: 'black'}} />
                         <input
+                        ref={backgroundRef}
                           type="color"
                           value={pageColorSelect}
-                          onChange={handleBackgroundChange}
+                          onChange={handleBackgroundPalette}
                           className={styles["color-picker-circle-input"]}
+                          style={{display: "none"}}
                         />
                       </div>
                     </div>
@@ -314,14 +346,14 @@ export const SideBar = ({
 
           <div
             className={styles["drawer-content"]}
-            onClick={() => handleText()}
+            
           >
             <div className={styles["drawer-content-dropdown"]}>
               <button>Text color</button>
               {!isOpenTextPalette ? (
-                <RiArrowDownSLine style={iconProp} />
+                <RiArrowDownSLine style={iconProp} onClick={() => handleText()} />
               ) : (
-                <RiArrowUpSLine style={iconProp} />
+                <RiArrowUpSLine style={iconProp} onClick={() => handleText()} />
               )}
             </div>
             {isOpenTextPalette && (
@@ -335,9 +367,7 @@ export const SideBar = ({
                         key={color.id}
                         style={{ backgroundColor: color.color }}
                         onClick={() => {
-                          // setIsTextColor(color.color);
                           dispatch(addText(color.color));
-                          // document.body.style.color = textColorSelect;
                         }}
                       ></div>
                     );
@@ -350,13 +380,16 @@ export const SideBar = ({
                     <div className={styles["color-picker"]}>
                       <div
                         className={styles["color-picker-circle"]}
-                        style={{ backgroundColor: isBackgroundColor }}
+                        onClick={handleFontPicker}
                       >
+                        <CgColorPicker />
                         <input
+                        ref={fontRef}
                           type="color"
                           value={isPageColor}
-                          onChange={handleTextChange}
+                          onChange={handleFontChange}
                           className={styles["color-picker-circle-input"]}
+                          style={{ display: "none"}}
                         />
                       </div>
                     </div>
@@ -408,15 +441,18 @@ export const SideBar = ({
           </div>
 
           <footer className={styles["footer"]}>
+            <Link to={'/edit-memorial'} target="_main">
             <button
               style={{
                 backgroundColor: pageColorSelect,
                 color: textColorSelect,
+                width: '100%'
               }}
             >
               <BsBoxArrowUpRight style={footerProp} />
               Veiw Live Page
             </button>
+            </Link>
             <button
               style={{
                 backgroundColor: pageColorSelect,

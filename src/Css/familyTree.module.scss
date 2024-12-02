@@ -1,0 +1,339 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+
+.family {
+  padding-top: 120px;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+
+    &-input {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        font-size: 33px;
+        font-family: Spectral;
+        padding: 5px 10px;
+        width: 240px;
+        background-color: transparent;
+        border: 1px dashed rgba(166, 166, 166, 0.36);
+        outline: none;
+        margin-bottom: 10px;
+      }
+
+      &-line {
+        width: 60px;
+        height: 3px;
+      }
+    }
+
+    &-switch {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0px;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &-tree {
+    padding: 150px 150px 80px 150px;
+
+    &-1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-father {
+          display: flex;
+          align-items: center;
+
+          &-card {
+            height: 170px;
+            width: 130px;
+          }
+
+          &-lineRight {
+            height: 2px;
+            width: 75px;
+          }
+
+          &-lineDown {
+            width: 1px;
+            height: 150px;
+            position: relative;
+            top: 74px;
+          }
+        }
+
+        &-mother {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &-lineDown {
+            width: 1px;
+            height: 150px;
+            position: relative;
+            top: 74px;
+          }
+
+          &-lineLeft {
+            height: 2px;
+            width: 75px;
+          }
+
+          &-card {
+            height: 170px;
+            width: 130px;
+          }
+        }
+      }
+
+      &-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-father {
+          display: flex;
+          align-items: center;
+
+          &-card {
+            height: 170px;
+            width: 130px;
+          }
+
+          &-lineRight {
+            height: 2px;
+            width: 75px;
+          }
+
+          &-lineDown {
+            width: 1px;
+            height: 150px;
+            position: relative;
+            top: 74px;
+          }
+        }
+
+        &-mother {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &-lineDown {
+            width: 1px;
+            height: 150px;
+            background-color: white;
+            position: relative;
+            top: 74px;
+          }
+
+          &-lineLeft {
+            height: 2px;
+            width: 75px;
+            background-color: aliceblue;
+          }
+
+          &-card {
+            height: 170px;
+            width: 130px;
+            background-color: white;
+          }
+        }
+      }
+    }
+
+    &-2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 60px 80px 0px 80px;
+
+      &-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-father {
+          display: flex;
+          align-items: center;
+          padding-left: 60px;
+
+          &-card {
+            height: 170px;
+            width: 130px;
+          }
+
+          &-lineRight {
+            height: 2px;
+            width: 225px;
+          }
+          &-lineDown {
+            height: 198px;
+            width: 3px;
+            position: relative;
+            top: 98px;
+          }
+        }
+      }
+
+      &-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-mother {
+          display: flex;
+          align-items: center;
+          padding-right: 62px;
+
+          &-lineLeft {
+            height: 2px;
+            width: 225px;
+          }
+
+          &-lineDown {
+            height: 198px;
+            width: 1px;
+            position: relative;
+            top: 98px;
+          }
+
+          &-card {
+            height: 170px;
+            width: 130px;
+          }
+        }
+      }
+    }
+
+    &-3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 23px auto auto;
+
+      &-siblings {
+        max-width: 400px;
+
+        &-wrapper {
+          display: flex;
+          flex-direction: column;
+
+          &-lineTop {
+            width: 2px;
+            height: 30px;
+            position: relative;
+            left: 303px;
+            top: 30px;
+          }
+
+          &-lineLeft {
+            width: 190px;
+            height: 1px;
+            position: relative;
+            left: 303px;
+          }
+
+          &-card {
+            border: 1px solid red;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            overflow-x: auto;
+            max-width: 500px;
+
+            &-items {
+              height: 170px;
+              width: 130px;
+              flex-shrink: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+
+      &-me {
+        width: 130px;
+        height: 170px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-image {
+            padding: 5px;
+            background-color: white;
+            border-radius: 50%;
+
+            img {
+                width: 90px;
+                height: 80px;
+                border-radius: 50%;
+            }
+        }
+      }
+    }
+
+    &-4 {
+        margin-top: 30px;
+      
+        &-child {
+          display: flex;
+          flex-direction: column;
+          position: relative; 
+      
+          &-lineTop {
+            width: 1px;
+            height: 150px;
+            position: absolute; 
+          }
+      
+          &-card {
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto; 
+            max-width: 700px; 
+            position: relative; 
+      
+            &-items {
+              height: 170px;
+              width: 130px;
+              flex-shrink: 0; 
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+      
+  }
+}
+
+.family-tree-3-wife-lineLeft {
+    height: 1px;
+    width: 32px;
+    position: relative;
+    right: 32px;
+    top: 130px;
+}

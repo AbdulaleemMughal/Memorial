@@ -9,22 +9,22 @@ export interface TimelineInterface {
 
 export const year =[
     {
-        title: '1985',
+        title: 1985,
     },
     {
-        title: '1990',
+        title: 1990,
     },
     {
-        title: '2000',
+        title: 2000,
     },
     {
-        title: '2010',
+        title: 2010,
     },
     {
-        title: '2020',
+        title: 2020,
     },
     {
-        title: '2021',
+        title: 2021,
     }
 ];
 
@@ -69,33 +69,33 @@ export const month = [
 
 export const day = [
     {
-        title: '1',
+        title: 1,
     },
     {
-        title: '2',
+        title: 2,
     },
     {
-        title: '3',
+        title: 3,
     },
     {
-        title: '4',
+        title: 4,
     },
     {
-        title: '5',
+        title: 5,
     },
     {
-        title: '6',
+        title: 6,
     },
     {
-        title: '7',
+        title: 7,
     },
     {
-        title: '8',
+        title: 8,
     },
     {
-        title: '9',
+        title: 9,
     },
     {
-        title: '10',
+        title: 10,
     }
 ];

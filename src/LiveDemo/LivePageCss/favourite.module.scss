@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+.favourite {
+    padding-top: 120px;
+
+    &-heading {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 50px;
+
+        h2 {
+            margin: 0px;
+            font-family: Spectral;
+        }
+
+        &-line {
+            width: 60px;
+            height: 3px;
+        }
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+
+        &-card {
+            padding: 25px 20px;
+            background: hsla(0, 0%, 100%, .126);
+            box-shadow: 0 7px 29px 0 hsla(240, 5%, 41%, .2);
+            width: 350px;
+
+            h6 {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    }
+}

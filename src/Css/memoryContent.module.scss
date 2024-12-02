@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800&display=swap");
+
+.memory-card {
+  margin-top: 24px;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 110, 0.2) 0px 7px 29px 0px;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-date {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      &-select select {
+        padding: 6px 36px 6px 12px;
+        border-radius: 6px;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 16px;
+    padding: 20px 0px 8px 0px;
+  }
+
+  &-name {
+    margin-top: 48px;
+    display: flex;
+    justify-content: flex-end;
+
+    h3 {
+      cursor: pointer;
+      font-family: Spectral;
+    }
+  }
+
+  &-images {
+    display: flex;
+    gap: 10px;
+
+    img {
+      height: 120px;
+      width: 150px;
+      border-radius: 5px;
+    }
+  }
+}
