@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import styles from "../../Css/FamilyTreeScss/FamilyTreeCards.module.scss";
 import { LuTrash } from "react-icons/lu";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/appstore";
 import { FamilyCardInterface } from "../../Typescript/familyTree.interface";
+import { FaPlus } from "react-icons/fa6";
 
 type GrandMotherCardProps = {
     iconStyle: React.CSSProperties;
@@ -15,12 +16,20 @@ export const GrandMotherCard = ({ iconStyle }: GrandMotherCardProps) => {
   const [name, setName] = useState<string>("Full Name");
   const [image, setImage] = useState<string>("");
   const [cardDetail, setCardDetail] = useState<FamilyCardInterface | null>(null);
+  const [showGrandMotherCard, setShowGrandMotherCard] =
+  useState<boolean>(true);
   const [reloadPage, setReloadPage] = useState<boolean>(true);
 
   const textColor = useSelector((store: RootState) => store.text.isText);
 
   useEffect(() => {
     setReloadPage(false);
+    const storedValue = localStorage.getItem("Show-grandmother-Card");
+    if (storedValue !== null) {
+      setShowGrandMotherCard(JSON.parse(storedValue));
+    };
+
+    // fetching detail of card
 
     const details = localStorage.getItem("Grand-Mother")
     if(details) {
@@ -31,9 +40,10 @@ export const GrandMotherCard = ({ iconStyle }: GrandMotherCardProps) => {
   useEffect(() => {
       if(!reloadPage){
         setCardDetail({ name, imgUrl: image });
-        localStorage.setItem('Grand-Mother', JSON.stringify(cardDetail))
+        localStorage.setItem('Grand-Mother', JSON.stringify(cardDetail));
+      localStorage.setItem("Show-grandmother-Card", JSON.stringify(showGrandMotherCard));
     }
-  }, [name, image]);
+  }, [name, image, showGrandMotherCard]);
 
   const handleImage = () => {
     if (imageRef.current) {
@@ -54,13 +64,19 @@ export const GrandMotherCard = ({ iconStyle }: GrandMotherCardProps) => {
   };
     return (
         <>
-          <div className={styles["card"]}>
+        {
+          !showGrandMotherCard ? (
+            <div className={styles["card"]}>
             <div className={styles["card-delete"]}>
-              <LuTrash style={iconStyle} />
+              <LuTrash style={iconStyle} 
+              onClick={() => {
+                setShowGrandMotherCard(true);
+                localStorage.removeItem("Grand-Mother");
+              }} />
             </div>
             <div className={styles["card-image"]}>
               <div className={styles["card-image-pic"]}>
-                {cardDetail ? (
+                {cardDetail?.imgUrl !== '' ? (
                   <img onClick={handleImage} src={cardDetail?.imgUrl} />
                 ) : (
                   <IoPersonCircleSharp
@@ -89,6 +105,49 @@ export const GrandMotherCard = ({ iconStyle }: GrandMotherCardProps) => {
               />
             </div>
           </div>
+          ): <AddCard 
+          setCardDetail={setCardDetail}
+          setShowGrandMotherCard={setShowGrandMotherCard} />
+        }
+          
         </>
       );
+};
+
+type AddCardProps = {
+  setShowGrandMotherCard: Dispatch<SetStateAction<boolean>>;
+  setCardDetail: Dispatch<SetStateAction<FamilyCardInterface | null>>;
+};
+
+export const AddCard = ({
+  setShowGrandMotherCard,
+  setCardDetail,
+}: AddCardProps) => {
+
+  const pageColor = useSelector((store: RootState) => store.color.isColor);
+
+  return (
+    <>
+      <div
+        className={styles["cards"]}
+        style={{ backgroundColor: pageColor }}
+        onClick={() => {
+          setShowGrandMotherCard(false);
+          setCardDetail(null);
+        }}
+      >
+        <div className={styles["card-add"]}>
+          <FaPlus
+            style={{
+              backgroundColor: "white",
+              borderRadius: "50%",
+              fontSize: "40px",
+              color: "black",
+              padding: "11px",
+            }}
+          />
+        </div>
+      </div>
+    </>
+  );
 };

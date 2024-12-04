@@ -9,6 +9,7 @@ import { Video } from "./Component/Video";
 import { Memories } from "./Component/Memories";
 import { Timeline } from "./Component/Timeline"
 import { Gallery } from "./Component/Gallery";
+import { FamilyTree } from "./Component/FamilyTree";
 
 export const LivePage = () => {
   const backgroundColor = useSelector(
@@ -28,6 +29,7 @@ export const LivePage = () => {
           <Memories />
           <Timeline />
           <Gallery />
+          <FamilyTree />
         </div>
       </div>
     </>

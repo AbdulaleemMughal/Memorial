@@ -1,26 +1,35 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import styles from "../../Css/FamilyTreeScss/FamilyTreeCards.module.scss";
 import { LuTrash } from "react-icons/lu";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Store/appstore";
 import { FamilyCardInterface } from "../../Typescript/familyTree.interface";
+import { FaPlus } from "react-icons/fa6";
 
 type GrandMother1CardProps = {
-  iconStyle: React.CSSProperties;
-};
+    iconStyle: React.CSSProperties;
+  };
 
 export const GrandMother1Card = ({ iconStyle }: GrandMother1CardProps) => {
-  const imageRef = useRef<HTMLInputElement | null>(null);
+    const imageRef = useRef<HTMLInputElement | null>(null);
   const [name, setName] = useState<string>("Full Name");
   const [image, setImage] = useState<string>("");
   const [cardDetail, setCardDetail] = useState<FamilyCardInterface | null>(null);
+  const [showGrandMotherCard, setShowGrandMotherCard] =
+  useState<boolean>(true);
   const [reloadPage, setReloadPage] = useState<boolean>(true);
 
   const textColor = useSelector((store: RootState) => store.text.isText);
 
   useEffect(() => {
     setReloadPage(false);
+    const storedValue = localStorage.getItem("Show-grandmother-Card-1");
+    if (storedValue !== null) {
+      setShowGrandMotherCard(JSON.parse(storedValue));
+    };
+
+    // fetching detail of card
 
     const details = localStorage.getItem("Grand-Mother-1")
     if(details) {
@@ -31,9 +40,10 @@ export const GrandMother1Card = ({ iconStyle }: GrandMother1CardProps) => {
   useEffect(() => {
       if(!reloadPage){
         setCardDetail({ name, imgUrl: image });
-        localStorage.setItem('Grand-Mother-1', JSON.stringify(cardDetail))
+        localStorage.setItem('Grand-Mother-1', JSON.stringify(cardDetail));
+      localStorage.setItem("Show-grandmother-Card-1", JSON.stringify(showGrandMotherCard));
     }
-  }, [name, image]);
+  }, [name, image, showGrandMotherCard]);
 
   const handleImage = () => {
     if (imageRef.current) {
@@ -52,40 +62,88 @@ export const GrandMother1Card = ({ iconStyle }: GrandMother1CardProps) => {
       reader.readAsDataURL(file);
     }
   };
+    return (
+        <>
+        {
+          !showGrandMotherCard ? (
+            <div className={styles["card"]}>
+            <div className={styles["card-delete"]}>
+              <LuTrash style={iconStyle} 
+              onClick={() => {
+                setShowGrandMotherCard(true);
+                localStorage.removeItem("Grand-Mother");
+              }} />
+            </div>
+            <div className={styles["card-image"]}>
+              <div className={styles["card-image-pic"]}>
+                {cardDetail?.imgUrl !== '' ? (
+                  <img onClick={handleImage} src={cardDetail?.imgUrl} />
+                ) : (
+                  <IoPersonCircleSharp
+                    style={{ height: "90px", width: "90px", cursor: "pointer" }}
+                    onClick={handleImage}
+                  />
+                )}
+    
+                <input
+                  type="file"
+                  accept="*/image"
+                  ref={imageRef}
+                  onChange={handleFileChange}
+                />
+              </div>
+            </div>
+            <div className={styles["card-name"]}>
+              <input
+                type="text"
+                style={{ color: textColor }}
+                value={cardDetail?.name}
+                onChange={(e) => {
+                    const newName = e.target.value;
+                    setName(newName);
+                }}
+              />
+            </div>
+          </div>
+          ): <AddCard 
+          setCardDetail={setCardDetail}
+          setShowGrandMotherCard={setShowGrandMotherCard} />
+        }
+          
+        </>
+      );
+};
+
+type AddCardProps = {
+  setShowGrandMotherCard: Dispatch<SetStateAction<boolean>>;
+  setCardDetail: Dispatch<SetStateAction<FamilyCardInterface | null>>;
+};
+
+export const AddCard = ({
+  setShowGrandMotherCard,
+  setCardDetail,
+}: AddCardProps) => {
+
+  const pageColor = useSelector((store: RootState) => store.color.isColor);
 
   return (
     <>
-      <div className={styles["card"]}>
-        <div className={styles["card-delete"]}>
-          <LuTrash style={iconStyle} />
-        </div>
-        <div className={styles["card-image"]}>
-          <div className={styles["card-image-pic"]}>
-          {cardDetail ? (
-              <img onClick={handleImage} src={cardDetail?.imgUrl} />
-            ) : (
-              <IoPersonCircleSharp
-                style={{ height: "90px", width: "90px", cursor: "pointer" }}
-                onClick={handleImage}
-              />
-            )}
-
-            <input
-              type="file"
-              accept="*/image"
-              ref={imageRef}
-              onChange={handleFileChange}
-            />
-          </div>
-        </div>
-        <div className={styles["card-name"]}>
-          <input
-            type="text"
-            style={{ color: textColor }}
-            value={cardDetail?.name}
-            onChange={(e) => {
-                const newName = e.target.value;
-                setName(newName);
+      <div
+        className={styles["cards"]}
+        style={{ backgroundColor: pageColor }}
+        onClick={() => {
+          setShowGrandMotherCard(false);
+          setCardDetail(null);
+        }}
+      >
+        <div className={styles["card-add"]}>
+          <FaPlus
+            style={{
+              backgroundColor: "white",
+              borderRadius: "50%",
+              fontSize: "40px",
+              color: "black",
+              padding: "11px",
             }}
           />
         </div>

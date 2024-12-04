@@ -31,7 +31,7 @@ export const Card = ({ iconStyle, data, onUpdate, onDelete }: CardProps) => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        onUpdate(data.id, { imgUrl: base64String }); // Update image URL in the parent state
+        onUpdate(data.id, { imgUrl: base64String }); 
       };
       reader.readAsDataURL(file);
     }
@@ -67,7 +67,7 @@ export const Card = ({ iconStyle, data, onUpdate, onDelete }: CardProps) => {
           value={data.name}
           onChange={(e) => {
             const newName = e.target.value;
-            onUpdate(data.id, { name: newName }); // Update name in the parent state
+            onUpdate(data.id, { name: newName }); 
           }}
         />
       </div>

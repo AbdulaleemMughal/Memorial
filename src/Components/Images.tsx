@@ -31,8 +31,6 @@ export const Images = ({ data, onDelete }: ImagesProps) => {
         folderName: folder.folderName || [], 
       }));
       setFolder(parsedFolders);
-
-      console.log(folder);
     }
   }, []);
   

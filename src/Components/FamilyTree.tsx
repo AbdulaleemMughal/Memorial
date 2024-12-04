@@ -44,17 +44,17 @@ export const FamilyTree = () => {
     const cards = localStorage.getItem("Sibling-card");
     if (cards) {
       setSiblingCards(JSON.parse(cards));
-    };
+    }
     // accessing the family wife cards
     const wifeCard = localStorage.getItem("Wife-card");
     if (wifeCard) {
       setWifeCards(JSON.parse(wifeCard));
-    };
+    }
     // accessing the family child cards
     const childCard = localStorage.getItem("Child-card");
     if (childCard) {
       setChildCards(JSON.parse(childCard));
-    };
+    }
   }, []);
 
   useEffect(() => {
@@ -188,16 +188,17 @@ export const FamilyTree = () => {
                   className={styles["family-tree-1-left-father-card"]}
                   style={{ backgroundColor: pageColor }}
                 >
-                  <GrandfatherCard
-                    iconStyle={{
-                      backgroundColor: "red",
-                      padding: "3px",
-                      fontSize: "20px",
-                      borderRadius: "5px",
-                      color: "white",
-                      cursor: "pointer",
-                    }}
-                  />
+                    <GrandfatherCard
+                      iconStyle={{
+                        backgroundColor: "red",
+                        padding: "3px",
+                        fontSize: "20px",
+                        borderRadius: "5px",
+                        color: "white",
+                        cursor: "pointer",
+                      }}
+                    />
+                    {/* <AddCard /> */}
                 </div>
                 <div
                   className={styles["family-tree-1-left-father-lineRight"]}
@@ -483,24 +484,22 @@ export const FamilyTree = () => {
                 className={styles["family-tree-4-child-card"]}
                 style={{ border: `1px solid ${pageColor}` }}
               >
-                  {
-                  childCards.map((c) => (
-                    <Card
-                      key={c.id}
-                      data={c}
-                      onUpdate={handleUpdateChildCard}
-                      onDelete={deleteChildCard}
-                      iconStyle={{
-                        backgroundColor: "red",
-                        padding: "3px",
-                        fontSize: "20px",
-                        borderRadius: "5px",
-                        color: "white",
-                        cursor: "pointer",
-                      }}
-                    />
-                  ))
-                }
+                {childCards.map((c) => (
+                  <Card
+                    key={c.id}
+                    data={c}
+                    onUpdate={handleUpdateChildCard}
+                    onDelete={deleteChildCard}
+                    iconStyle={{
+                      backgroundColor: "red",
+                      padding: "3px",
+                      fontSize: "20px",
+                      borderRadius: "5px",
+                      color: "white",
+                      cursor: "pointer",
+                    }}
+                  />
+                ))}
                 <div
                   className={styles["family-tree-4-child-card-items"]}
                   style={{ backgroundColor: pageColor, cursor: "pointer" }}
@@ -527,3 +526,5 @@ export const FamilyTree = () => {
     </>
   );
 };
+
+
